@@ -22,5 +22,13 @@ export const heroSlides = [
     description: "自然の力で美しさを追求し、健やかなお肌へと導く温感ケアクリーム。",
     buttonText: "購入する",
     buttonLink: "/purchase?plan=1"
+  },
+  {
+    id: 4,
+    image: "/images/hero-slide-3.webp",
+    title: "HOT HERBE",
+    description: "韓国伝統の温感療法と現代技術の融合。毎日のケアで健康的な美しさを。",
+    buttonText: "今すぐ試す",
+    buttonLink: "/purchase?plan=0"
   }
 ];
