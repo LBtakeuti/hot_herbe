@@ -122,17 +122,35 @@ export const features = [
   {
     title: "心地よい温感",
     description: "筋肉や関節をやさしく温め、心地よいリラックス感をもたらします。",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD_Nh1K1RYCQ5wrGkSwchlBik1s-Mv-vHL-b5Rza8kEgOuW3ofpDM8N_xvU8flQdpm7YRjHY1xw2w-lj0DctAGJyslVXdA2HmP498m6RaLYxSZNIBKv4V_NPc7vCXpMfipcrD12UAUwip7g4UVqPa-BdhSgJen_M_mQ2793l_O4tXpFmTIysgiyRlsAe0sH56kn6wQvmIQdQfbEaxbCttC3Ude5Pij4hBnXHMr94SATXpSzTXipc8ENCd0KXIvcx_nwO4a8H9ArAEnq"
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD_Nh1K1RYCQ5wrGkSwchlBik1s-Mv-vHL-b5Rza8kEgOuW3ofpDM8N_xvU8flQdpm7YRjHY1xw2w-lj0DctAGJyslVXdA2HmP498m6RaLYxSZNIBKv4V_NPc7vCXpMfipcrD12UAUwip7g4UVqPa-BdhSgJen_M_mQ2793l_O4tXpFmTIysgiyRlsAe0sH56kn6wQvmIQdQfbEaxbCttC3Ude5Pij4hBnXHMr94SATXpSzTXipc8ENCd0KXIvcx_nwO4a8H9ArAEnq",
+    details: [
+      "温感成分が筋肉や関節を温め、血行を促進します",
+      "疲労物質の排出を助け、体の疲れを軽減します",
+      "リラックス効果により、心身の緊張を和らげます",
+      "持続性の高い温感で、長時間効果が続きます"
+    ]
   },
   {
     title: "天然成分配合",
     description: "リラックス効果で知られる天然エキスをブレンドして作られています。",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAIzH9hR_oIJTCpvBKALA4G-h_CEwa3rsADpWPma2-caOkojrmeXXJ4UDXktZ4FeF3hU7HjdPGd1AdA-onOYcKtWE2Zg3OiaP0BSgBq1cP1A0r4E5lnf7vSccyq_dxt-29oNxk5zTw9ZIo38ETe01fMUDtffSFtIT6c0Tbxcn99qhQmGYgpcT6AYcf0nnEvTFx-MSwtWSOgsaFPRAH6Dj9_1kt8GBqTkFYYJ5qpz1CP5EEo1iUubvffVugJBT1_TzIKb8FKzxoevN_A"
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAIzH9hR_oIJTCpvBKALA4G-h_CEwa3rsADpWPma2-caOkojrmeXXJ4UDXktZ4FeF3hU7HjdPGd1AdA-onOYcKtWE2Zg3OiaP0BSgBq1cP1A0r4E5lnf7vSccyq_dxt-29oNxk5zTw9ZIo38ETe01fMUDtffSFtIT6c0Tbxcn99qhQmGYgpcT6AYcf0nnEvTFx-MSwtWSOgsaFPRAH6Dj9_1kt8GBqTkFYYJ5qpz1CP5EEo1iUubvffVugJBT1_TzIKb8FKzxoevN_A",
+    details: [
+      "甘草、ターメリック、ヨモギなど13種類の天然成分を配合",
+      "肌にやさしく、敏感肌の方でも安心してお使いいただけます",
+      "化学物質や添加物を最小限に抑えた処方です",
+      "東洋医学の智慧を活かした伝統的な成分配合"
+    ]
   },
   {
     title: "使いやすさ",
     description: "なめらかなテクスチャーで、塗りやすく肌によく馴染みます。",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtFM2QrhPJAaQ80HvUbS7zTH4RvQcilOQyS_SvhuIMxFHCHlOJO5jd0rE42FqIMr5hFssUTI64sN3Lohj23uEKcKvqZmcixPa5E9KPtqCScH6Uj6ZtSqs3hKBAixzPfF5YBqRTZfJ1r6LNXX70Fvx-GfvmhNOfKZZcuauDpntBHPJicXcLoCpKGkwtXa-7GRu2iHxcYM--sQPa12srhKp-SQhWS1s9HbwAKcJaoFOk3P8S6pnhlHS1yHGfg-K4Sg4g58kBlHKj3j7A"
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtFM2QrhPJAaQ80HvUbS7zTH4RvQcilOQyS_SvhuIMxFHCHlOJO5jd0rE42FqIMr5hFssUTI64sN3Lohj23uEKcKvqZmcixPa5E9KPtqCScH6Uj6ZtSqs3hKBAixzPfF5YBqRTZfJ1r6LNXX70Fvx-GfvmhNOfKZZcuauDpntBHPJicXcLoCpKGkwtXa-7GRu2iHxcYM--sQPa12srhKp-SQhWS1s9HbwAKcJaoFOk3P8S6pnhlHS1yHGfg-K4Sg4g58kBlHKj3j7A",
+    details: [
+      "クリーミーで伸びの良いテクスチャー",
+      "ベタつかず、サラッとした仕上がり",
+      "少量でも広範囲に塗布可能で経済的",
+      "衣服に付着しにくく、日常使いに便利"
+    ]
   }
 ];
 
