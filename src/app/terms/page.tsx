@@ -57,7 +57,7 @@ export default function Terms() {
             <section className="mb-8">
               <h2 className="text-hot-herbe-dark text-xl font-bold mb-4">6. 追加手数料等の追加料金</h2>
               <p className="text-hot-herbe-dark text-base mb-4">
-                配送料（一律500円/箱）
+                配送料（一律<span style={{ fontFamily: 'Inter, sans-serif' }}>500円</span>/箱）
               </p>
             </section>
 
@@ -107,9 +107,9 @@ export default function Terms() {
             <section className="mb-8">
               <h2 className="text-hot-herbe-dark text-xl font-bold mb-4">11. 販売価格</h2>
               <p className="text-hot-herbe-dark text-base mb-2">
-                1個6,980円（税込）<br />
-                2個セット12,000円（税込）<br />
-                3個セット16,000円（税込）
+                1個<span style={{ fontFamily: 'Inter, sans-serif' }}>6,980円</span>（税込）<br />
+                2個セット<span style={{ fontFamily: 'Inter, sans-serif' }}>12,000円</span>（税込）<br />
+                3個セット<span style={{ fontFamily: 'Inter, sans-serif' }}>16,000円</span>（税込）
               </p>
             </section>
           </div>
