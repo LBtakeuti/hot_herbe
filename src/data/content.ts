@@ -139,19 +139,19 @@ export const features = [
 
 export const pricingOptions = [
   {
-    title: "単品",
-    price: "¥4,980",
+    title: "単品1個",
+    price: "¥6,980",
     save: null
   },
   {
     title: "2個セット",
-    price: "¥8,480",
-    save: "17%お得"
+    price: "¥12,000",
+    save: "14%お得"
   },
   {
     title: "3個セット",
-    price: "¥11,980",
-    save: "20%お得"
+    price: "¥16,000",
+    save: "24%お得"
   }
 ];
 

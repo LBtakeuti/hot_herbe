@@ -108,8 +108,8 @@ export default function Terms() {
               <h2 className="text-hot-herbe-dark text-xl font-bold mb-4">11. 販売価格</h2>
               <p className="text-hot-herbe-dark text-base mb-2">
                 1個6,980円（税込）<br />
-                2個12,000円（税込）<br />
-                3個16,000円（税込）
+                2個セット12,000円（税込）<br />
+                3個セット16,000円（税込）
               </p>
             </section>
           </div>
