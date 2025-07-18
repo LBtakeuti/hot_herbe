@@ -71,13 +71,6 @@ export default function Terms() {
               <h3 className="text-hot-herbe-dark text-lg font-bold mb-3">お客様都合の返品・交換の場合</h3>
               
               <p className="text-hot-herbe-dark text-base mb-2">
-                <strong>発送処理前の商品：</strong>
-              </p>
-              <ul className="list-disc pl-6 mb-4 text-hot-herbe-dark text-base">
-                <li>ウェブサイトのキャンセルボタンを押すことで注文のキャンセルが可能です</li>
-              </ul>
-              
-              <p className="text-hot-herbe-dark text-base mb-2">
                 <strong>発送処理後の商品：</strong>
               </p>
               <ul className="list-disc pl-6 mb-4 text-hot-herbe-dark text-base">
