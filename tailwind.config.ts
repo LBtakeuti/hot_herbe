@@ -18,6 +18,7 @@ const config: Config = {
       },
       fontFamily: {
         'lexend': ['Lexend', '"Noto Sans"', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
       },
     },
   },

@@ -20,7 +20,7 @@ export default function PricingCard({ title, price, save, index }: PricingCardPr
             </p>
           )}
         </div>
-        <span className="text-hot-herbe-dark text-4xl font-black leading-tight tracking-[-0.033em]" style={{ fontFamily: 'Inter, sans-serif' }}>{price}</span>
+        <span className="text-hot-herbe-dark text-4xl font-black leading-tight tracking-[-0.033em] font-inter">{price}</span>
       </div>
       <Link
         href={`/purchase?plan=${index}`}

@@ -59,7 +59,7 @@ export default function PurchasePage() {
                   </span>
                 )}
               </div>
-              <div className="text-2xl font-bold text-hot-herbe-dark" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <div className="text-2xl font-bold text-hot-herbe-dark font-inter">
                 {selectedOption.price}
               </div>
             </div>
