@@ -41,8 +41,8 @@ export default function PurchasePage() {
             <h2 className="text-xl font-bold text-hot-herbe-dark mb-4">ご注文内容</h2>
             
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-24 h-24 bg-gradient-to-br from-hot-herbe-green to-hot-herbe-light-green rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">HOT<br />HERBE</span>
+              <div className="w-24 h-24 rounded-lg overflow-hidden">
+                <img src="/product-icon.webp" alt="HOT HERBE" className="w-full h-full object-cover" />
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-hot-herbe-dark">HOT HERBE 温感クリーム</h3>
@@ -62,9 +62,6 @@ export default function PurchasePage() {
               <div className="text-2xl font-bold text-hot-herbe-dark">
                 {selectedOption.price}
               </div>
-              <p className="text-sm text-hot-herbe-light-green mt-2">
-                送料込み（5,000円以上のご注文で送料無料）
-              </p>
             </div>
 
             <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">

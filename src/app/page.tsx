@@ -89,7 +89,7 @@ export default function Home() {
             ))}
           </div>
           <p className="text-hot-herbe-dark text-base font-normal leading-normal pb-3 pt-1 px-4">
-            5,000円以上のご注文で送料無料。クレジットカード、PayPal対応。
+            クレジットカード、PayPal対応。
           </p>
         </section>
 
