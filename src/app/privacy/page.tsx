@@ -15,7 +15,7 @@ export default function Privacy() {
           <div className="prose prose-lg max-w-none">
             <section className="mb-8">
               <p className="text-hot-herbe-dark text-base leading-relaxed mb-4">
-                HOT HERBE株式会社（以下「当社」）は、当社が提供するサービス（以下「本サービス」）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」）を定めます。
+                landbridge株式会社（以下「当社」）は、当社が提供するサービス（以下「本サービス」）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」）を定めます。
               </p>
             </section>
 
@@ -105,10 +105,9 @@ export default function Privacy() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-hot-herbe-dark text-base leading-relaxed">
-                  <strong>HOT HERBE株式会社</strong><br />
-                  〒150-0001 東京都渋谷区神宮前1-1-1<br />
-                  メール: privacy@hotherbe.com<br />
-                  電話: 03-1234-5678
+                  <strong>landbridge株式会社</strong><br />
+                  〒343-0856 埼玉県越谷市川柳町二丁目401<br />
+                  代表取締役: 三森一輝
                 </p>
               </div>
             </section>
