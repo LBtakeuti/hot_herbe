@@ -139,7 +139,7 @@ export default function PurchaseConfirmModal({
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-bold text-hot-herbe-dark font-inter">{selectedOption.price}</p>
+                    <p className="text-lg font-medium text-hot-herbe-dark font-inter">{selectedOption.price}</p>
                     {selectedOption.save && (
                       <p className="text-xs text-hot-herbe-green">{selectedOption.save}</p>
                     )}
