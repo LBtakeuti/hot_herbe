@@ -111,10 +111,9 @@ export default function Home() {
             会社情報
           </h2>
           <p className="text-hot-herbe-dark text-base font-normal leading-normal pb-3 pt-1 px-4">
-            HOT HERBE株式会社<br />
-            〒150-0001 東京都渋谷区神宮前1-1-1<br />
-            メール: support@hotherbe.com<br />
-            電話: 03-1234-5678
+            landbridge株式会社<br />
+            〒343-0856 埼玉県越谷市川柳町二丁目401<br />
+            代表取締役: 三森一輝
           </p>
         </section>
       </div>
