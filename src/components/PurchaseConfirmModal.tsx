@@ -129,9 +129,14 @@ export default function PurchaseConfirmModal({
               <div className="bg-hot-herbe-bg rounded-lg p-4">
                 <h3 className="font-semibold text-hot-herbe-dark mb-2">商品情報</h3>
                 <div className="flex justify-between items-center">
-                  <div>
-                    <p className="font-medium">HOT HERBE 温感クリーム ({selectedOption.title})</p>
-                    <p className="text-sm text-hot-herbe-light-green">100ml 天然成分配合</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                      <img src="/product-icon.webp" alt="HOT HERBE" className="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <p className="font-medium">HOT HERBE 温感クリーム ({selectedOption.title})</p>
+                      <p className="text-sm text-hot-herbe-light-green">100ml 天然成分配合</p>
+                    </div>
                   </div>
                   <div className="text-right">
                     <p className="text-lg font-bold text-hot-herbe-dark">{selectedOption.price}</p>
