@@ -12,7 +12,7 @@ interface FormData {
   city: string
   address: string
   building: string
-  paymentMethod: 'credit' | 'bank' | 'cod'
+  paymentMethod: 'credit' | 'bank'
   cardNumber: string
   expiryDate: string
   cvv: string
@@ -77,7 +77,6 @@ export default function PurchaseConfirmModal({
     switch (method) {
       case 'credit': return 'クレジットカード'
       case 'bank': return '銀行振込'
-      case 'cod': return '代金引換'
       default: return ''
     }
   }

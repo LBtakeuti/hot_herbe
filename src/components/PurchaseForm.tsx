@@ -19,7 +19,7 @@ interface FormData {
   city: string
   address: string
   building: string
-  paymentMethod: 'credit' | 'bank' | 'cod'
+  paymentMethod: 'credit' | 'bank'
   cardNumber: string
   expiryDate: string
   cvv: string
@@ -276,17 +276,6 @@ export default function PurchaseForm({ selectedOption }: PurchaseFormProps) {
                 className="text-hot-herbe-green focus:ring-hot-herbe-green"
               />
               <span className="ml-2 text-hot-herbe-dark">銀行振込</span>
-            </label>
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="cod"
-                checked={formData.paymentMethod === 'cod'}
-                onChange={handleInputChange}
-                className="text-hot-herbe-green focus:ring-hot-herbe-green"
-              />
-              <span className="ml-2 text-hot-herbe-dark">代金引換</span>
             </label>
           </div>
 
