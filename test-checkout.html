@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>テスト購入</title>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <h1>Stripeチェックアウトテスト</h1>
+  <button id="checkout-button">購入する (¥6,980)</button>
+  <div id="status"></div>
+  
+  <script>
+    const stripe = Stripe('pk_test_51Q3XSFKvr8fxkHMdKZ9WKJhc0HlnIKJcdBOJJwBJCyeOJyW5VQZ9sJUpGGKLz0hRyWBzKPpUn2vFzD6iBJqCYxJF00pnCNW8ND');
+    
+    document.getElementById('checkout-button').addEventListener('click', async () => {
+      const statusDiv = document.getElementById('status');
+      statusDiv.textContent = 'セッション作成中...';
+      
+      try {
+        // Call our backend to create checkout session
+        const response = await fetch('http://localhost:3000/api/checkout/create-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            productId: 'hot_herbe_30days',
+            quantity: 1
+          })
+        });
+        
+        const data = await response.json();
+        console.log('Response:', data);
+        
+        if (data.error) {
+          statusDiv.textContent = 'エラー: ' + data.error;
+          return;
+        }
+        
+        // Redirect to Stripe Checkout
+        if (data.url) {
+          statusDiv.textContent = 'Stripeにリダイレクト中...';
+          window.location.href = data.url;
+        } else if (data.sessionId) {
+          statusDiv.textContent = 'Stripeチェックアウトを開始中...';
+          const { error } = await stripe.redirectToCheckout({
+            sessionId: data.sessionId,
+          });
+          if (error) {
+            statusDiv.textContent = 'エラー: ' + error.message;
+          }
+        }
+      } catch (error) {
+        statusDiv.textContent = 'ネットワークエラー: ' + error.message;
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html>

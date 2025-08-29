@@ -5,8 +5,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
-        port: '',
         pathname: '/aida-public/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
       },
     ],
     unoptimized: false,

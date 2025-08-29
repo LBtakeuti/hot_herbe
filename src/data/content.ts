@@ -120,19 +120,19 @@ export const ingredients = [
 
 export const features = [
   {
-    title: "心地よい温感",
-    description: "筋肉や関節をやさしく温め、心地よいリラックス感をもたらします。",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD_Nh1K1RYCQ5wrGkSwchlBik1s-Mv-vHL-b5Rza8kEgOuW3ofpDM8N_xvU8flQdpm7YRjHY1xw2w-lj0DctAGJyslVXdA2HmP498m6RaLYxSZNIBKv4V_NPc7vCXpMfipcrD12UAUwip7g4UVqPa-BdhSgJen_M_mQ2793l_O4tXpFmTIysgiyRlsAe0sH56kn6wQvmIQdQfbEaxbCttC3Ude5Pij4hBnXHMr94SATXpSzTXipc8ENCd0KXIvcx_nwO4a8H9ArAEnq"
+    title: "韓国発、体の芯から温める温感クリーム",
+    description: "韓国で長年愛されてきた温感クリームが日本初上陸。塗布するとじんわりと温かさが広がり、体の芯まで心地よい温感が届きます。韓国の伝統的な温活文化と最新技術を融合させた、特別な温感体験をお届けします。",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80"
   },
   {
-    title: "天然成分配合",
-    description: "リラックス効果で知られる天然エキスをブレンドして作られています。",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAIzH9hR_oIJTCpvBKALA4G-h_CEwa3rsADpWPma2-caOkojrmeXXJ4UDXktZ4FeF3hU7HjdPGd1AdA-onOYcKtWE2Zg3OiaP0BSgBq1cP1A0r4E5lnf7vSccyq_dxt-29oNxk5zTw9ZIo38ETe01fMUDtffSFtIT6c0Tbxcn99qhQmGYgpcT6AYcf0nnEvTFx-MSwtWSOgsaFPRAH6Dj9_1kt8GBqTkFYYJ5qpz1CP5EEo1iUubvffVugJBT1_TzIKb8FKzxoevN_A"
+    title: "13種の天然由来成分による温感サポート",
+    description: "甘草、ターメリック、生姜、唐辛子など、温感作用で知られる13種類の天然由来成分を贅沢に配合。これらの成分が肌に潤いを与えながら、じんわりとした温かさで包み込みます。毎日のセルフケアで、めぐりの良い健やかな状態へ。",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
   },
   {
-    title: "使いやすさ",
-    description: "なめらかなテクスチャーで、塗りやすく肌によく馴染みます。",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtFM2QrhPJAaQ80HvUbS7zTH4RvQcilOQyS_SvhuIMxFHCHlOJO5jd0rE42FqIMr5hFssUTI64sN3Lohj23uEKcKvqZmcixPa5E9KPtqCScH6Uj6ZtSqs3hKBAixzPfF5YBqRTZfJ1r6LNXX70Fvx-GfvmhNOfKZZcuauDpntBHPJicXcLoCpKGkwtXa-7GRu2iHxcYM--sQPa12srhKp-SQhWS1s9HbwAKcJaoFOk3P8S6pnhlHS1yHGfg-K4Sg4g58kBlHKj3j7A"
+    title: "スポーツから美容まで幅広いシーンで活躍",
+    description: "運動前のウォーミングアップ、デスクワーク後のリフレッシュ、就寝前のリラックスタイムなど、様々なシーンでご使用いただけます。べたつかず、さらっとした使用感で、衣服を着てもべたつきません。韓国で多くの方に支持される理由がここにあります。",
+    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80"
   }
 ];
 
@@ -157,15 +157,23 @@ export const pricingOptions = [
 
 export const faqs = [
   {
-    question: "HOT HERBEクリームはどのように作用しますか？",
-    answer: "HOT HERBEクリームは、天然成分をブレンドして、筋肉や関節をやさしく温める効果を生み出します。各成分が協働して、快適さとリラクゼーションを提供します。"
+    question: "HOT HERBEはどこで作られていますか？",
+    answer: "HOT HERBEは韓国で製造された温感クリームです。韓国の温活文化と最新の化粧品技術を融合させ、日本の皆様にお届けしています。韓国では多くの方に愛用されており、その人気商品が日本初上陸となりました。"
   },
   {
-    question: "敏感肌でも安全に使用できますか？",
-    answer: "HOT HERBEクリームは天然成分で作られており、ほとんどの肌タイプに安全です。ただし、初回使用前にはパッチテストを行うことをお勧めします。非常に敏感な肌やアレルギーをお持ちの方は、医療専門家にご相談ください。"
+    question: "どのような成分が含まれていますか？",
+    answer: "甘草、ターメリック、ヨモギ、白椿、カンフル、苦参、唐辛子、川芎、当帰、生姜、梔子、ハッカ、丹参など、13種類の天然由来成分を配合しています。これらの成分が肌に潤いを与えながら、じんわりとした温かさをもたらします。"
   },
   {
-    question: "どのくらいの頻度で使用すれば良いですか？",
-    answer: "HOT HERBEクリームは、必要に応じて1日3〜4回まで使用できます。薄く塗布し、吸収されるまでやさしくマッサージしてください。推奨使用量を超えないようにしてください。"
+    question: "どんな時に使うのがおすすめですか？",
+    answer: "運動前のウォーミングアップ、デスクワーク後のリフレッシュ、入浴後のセルフケア、就寝前のリラックスタイムなど、様々なシーンでご使用いただけます。1日3〜4回を目安に、気になる部分に適量を塗布してください。"
+  },
+  {
+    question: "敏感肌でも使用できますか？",
+    answer: "本製品は化粧品として、天然由来成分を中心に配合しています。ただし、肌質には個人差がありますので、初めてご使用の際は少量からお試しください。肌に異常を感じた場合は使用を中止してください。"
+  },
+  {
+    question: "温感はどのくらい持続しますか？",
+    answer: "温感の感じ方や持続時間には個人差がありますが、多くの方が塗布後すぐに温かさを感じ、しばらくの間心地よい温感が続くとご報告いただいています。使用量や塗布部位によっても変わります。"
   }
 ];

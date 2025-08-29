@@ -7,6 +7,12 @@ export default function Footer() {
         <div className="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
           <Link 
             className="text-hot-herbe-light-green text-base font-normal leading-normal min-w-40 hover:text-hot-herbe-green transition-colors" 
+            href="/company"
+          >
+            会社概要
+          </Link>
+          <Link 
+            className="text-hot-herbe-light-green text-base font-normal leading-normal min-w-40 hover:text-hot-herbe-green transition-colors" 
             href="/privacy"
           >
             プライバシーポリシー
@@ -19,7 +25,7 @@ export default function Footer() {
           </Link>
         </div>
         <p className="text-hot-herbe-light-green text-base font-normal leading-normal">
-          © 2024 HOT HERBE株式会社 All rights reserved.
+          © 2024 LandBridge株式会社 All rights reserved.
         </p>
       </footer>
       <div className="h-5 bg-white"></div>
