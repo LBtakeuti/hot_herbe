@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
           customer_email: session.customer_details?.email || '',
           customer_name: session.customer_details?.name || '',
           customer_phone: session.customer_details?.phone || '',
-          shipping_address: session.shipping_details?.address || {},
+          shipping_address: (session as any).shipping_details?.address || session.customer_details?.address || {},
           product_id: session.metadata?.productId || 'hot_herbe_30days',
           product_name: session.metadata?.productName || 'HOT HERBE',
           quantity: 1,
@@ -128,7 +128,7 @@ export async function POST(req: NextRequest) {
               name: session.customer_details?.name || '',
               phone: session.customer_details?.phone || '',
               stripe_customer_id: session.customer as string,
-              default_shipping_address: session.shipping_details?.address || {},
+              default_shipping_address: (session as any).shipping_details?.address || session.customer_details?.address || {},
               total_orders: 1,
               total_spent: (session.amount_total || 0) / 100
             })
