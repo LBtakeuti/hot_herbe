@@ -15,6 +15,7 @@ interface Order {
   total_amount: number
   status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'confirmed'
   payment_status?: string
+  payment_method?: string
   metadata?: any
 }
 

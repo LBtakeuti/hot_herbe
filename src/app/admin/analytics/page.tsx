@@ -222,7 +222,7 @@ export default function CustomerAnalyticsPage() {
           const dayNames = ['日', '月', '火', '水', '木', '金', '土']
           const dayName = dayNames[day]
           
-          const existing = acc.find(a => a.day === dayName)
+          const existing = acc.find((a: { day: string; orders: number }) => a.day === dayName)
           if (existing) existing.orders++
           else acc.push({ day: dayName, orders: 1 })
           return acc
@@ -233,7 +233,7 @@ export default function CustomerAnalyticsPage() {
           const month = new Date(order.created_at).getMonth() + 1
           const monthName = `${month}月`
           
-          const existing = acc.find(a => a.month === monthName)
+          const existing = acc.find((a: { month: string; orders: number; revenue: number }) => a.month === monthName)
           if (existing) {
             existing.orders++
             existing.revenue += Number(order.total_amount)
@@ -289,7 +289,7 @@ export default function CustomerAnalyticsPage() {
               { hour: '18-21', orders: 0 },
               { hour: '21-24', orders: 0 }
             ].map(slot => {
-              const data = timeOfDayData.find(d => d.hour === slot.hour)
+              const data = timeOfDayData.find((d: { hour: string; orders: number }) => d.hour === slot.hour)
               return data || slot
             }),
             dayOfWeek: [
@@ -301,7 +301,7 @@ export default function CustomerAnalyticsPage() {
               { day: '土', orders: 0 },
               { day: '日', orders: 0 }
             ].map(slot => {
-              const data = dayOfWeekData.find(d => d.day === slot.day)
+              const data = dayOfWeekData.find((d: { day: string; orders: number }) => d.day === slot.day)
               return data || slot
             }),
             seasonality: [
@@ -318,7 +318,7 @@ export default function CustomerAnalyticsPage() {
               { month: '11月', orders: 0, revenue: 0 },
               { month: '12月', orders: 0, revenue: 0 }
             ].map(slot => {
-              const data = monthlyData.find(d => d.month === slot.month)
+              const data = monthlyData.find((d: { month: string; orders: number; revenue: number }) => d.month === slot.month)
               return data || slot
             })
           },
