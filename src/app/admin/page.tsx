@@ -48,9 +48,11 @@ export default function AdminDashboard() {
 
   const fetchDashboardData = async () => {
     try {
-      // デモモードチェック
-      const isDemoMode = localStorage.getItem('adminDemoMode') === 'true'
-      if (isDemoMode) {
+      // 管理者モードチェック（デモモードは無効化）
+      const adminDemoMode = localStorage.getItem('adminDemoMode')
+      const adminUser = localStorage.getItem('adminUser')
+      
+      if (adminDemoMode === 'false' && adminUser) {
         setStats({
           totalRevenue: 6980,
           totalOrders: 1,
@@ -181,7 +183,7 @@ export default function AdminDashboard() {
             <div>
               <p className="text-gray-500 text-sm">総売上</p>
               <p className="text-2xl font-bold text-gray-900 mt-1">
-                ¥{stats.totalRevenue.toLocaleString()}
+                ¥{Number(stats.totalRevenue).toLocaleString('ja-JP')}
               </p>
               <div className="flex items-center mt-2">
                 {stats.revenueChange >= 0 ? (
@@ -284,7 +286,7 @@ export default function AdminDashboard() {
                     {order.customer_name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    ¥{order.total_amount.toLocaleString()}
+                    ¥{Number(order.total_amount).toLocaleString('ja-JP')}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(order.status)}`}>

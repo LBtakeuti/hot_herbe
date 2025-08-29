@@ -71,7 +71,11 @@
       "Bash(open http://localhost:3000/admin/profit)",
       "Bash(open http://localhost:3000/admin/inventory)",
       "Bash(open http://localhost:3003/admin/inventory)",
-      "Bash(vercel inspect:*)"
+      "Bash(vercel inspect:*)",
+      "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_f1zDI1/**)",
+      "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_82auXI/**)",
+      "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_HeJVfc/**)",
+      "Bash(tree:*)"
     ],
     "deny": []
   },

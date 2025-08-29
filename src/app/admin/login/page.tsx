@@ -21,34 +21,23 @@ export default function AdminLoginPage() {
     setLoading(true)
 
     try {
-      // デモアカウントのチェック
-      if (email === 'demo@example.com' && password === 'demo1234') {
-        // デモモードとしてローカルストレージに保存
-        localStorage.setItem('adminDemoMode', 'true')
+      // 特定アカウントのチェック（ハードコード認証）
+      if (email === 'sales@landbridge.co.jp' && password === 'Lb@123456') {
+        // 管理者モードとしてローカルストレージに保存
+        localStorage.setItem('adminDemoMode', 'false')
         localStorage.setItem('adminUser', JSON.stringify({ 
-          email: 'demo@example.com',
-          id: 'demo-user-id'
+          email: 'sales@landbridge.co.jp',
+          id: 'admin-user-id'
         }))
         // クッキーをセット
-        document.cookie = 'adminAuth=demo; path=/; max-age=86400'
-        
-        // 遷移
-        window.location.href = '/admin'
-        return
-      }
-
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
-      if (error) {
-        setError('メールアドレスまたはパスワードが正しくありません')
-      } else {
-        localStorage.removeItem('adminDemoMode')
-        // クッキーをセット
         document.cookie = 'adminAuth=authenticated; path=/; max-age=86400'
-        window.location.href = '/admin'
+        
+        // 強制的にリダイレクト
+        router.push('/admin')
+        return
+      } else {
+        // 指定のアカウント以外はエラー
+        setError('メールアドレスまたはパスワードが正しくありません')
       }
     } catch (error) {
       setError('ログインに失敗しました')
@@ -58,8 +47,8 @@ export default function AdminLoginPage() {
   }
 
   const handleDemoLogin = () => {
-    setEmail('demo@example.com')
-    setPassword('demo1234')
+    // デモログイン機能を無効化
+    setError('デモアカウントは利用できません')
   }
 
   if (checking) {
@@ -90,7 +79,7 @@ export default function AdminLoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="admin@example.com"
+              placeholder="sales@landbridge.co.jp"
             />
           </div>
 
@@ -124,20 +113,6 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-center text-sm text-gray-600 mb-3">デモアカウントで試す</p>
-          <button
-            type="button"
-            onClick={handleDemoLogin}
-            className="w-full bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors"
-          >
-            デモアカウントを使用
-          </button>
-          <p className="text-xs text-gray-500 mt-2 text-center">
-            メール: demo@example.com<br />
-            パスワード: demo1234
-          </p>
-        </div>
       </div>
     </div>
   )

@@ -12,7 +12,7 @@ export default function FeatureCard({ title, description, image, index }: Featur
 
   return (
     <div className={`relative overflow-hidden ${isEven ? 'bg-gradient-to-r from-stone-50 via-white to-stone-50' : 'bg-gradient-to-l from-amber-50/30 via-white to-amber-50/30'}`}>
-      <div className={`flex flex-col md:flex-row items-center gap-8 p-12 max-w-7xl mx-auto ${!isEven ? 'md:flex-row-reverse' : ''}`}>
+      <div className={`flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 max-w-5xl mx-auto ${!isEven ? 'md:flex-row-reverse' : ''}`}>
         {/* Content */}
         <div className="flex-1 space-y-6">
           <div className="space-y-4">

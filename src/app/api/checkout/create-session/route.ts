@@ -17,9 +17,21 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { productId, quantity = 1 } = body
     
-    console.log('Checkout request:', { productId, quantity })
-    console.log('Stripe key exists:', !!process.env.STRIPE_SECRET_KEY)
-    console.log('App URL:', process.env.NEXT_PUBLIC_APP_URL)
+    // 入力値検証
+    if (!productId || typeof productId !== 'string') {
+      return NextResponse.json(
+        { error: 'Invalid product ID' },
+        { status: 400 }
+      )
+    }
+    
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
+      return NextResponse.json(
+        { error: 'Invalid quantity. Must be between 1 and 10.' },
+        { status: 400 }
+      )
+    }
+    
 
     // Define product prices
     const products: Record<string, { name: string; price: number; description: string }> = {
@@ -49,8 +61,6 @@ export async function POST(req: NextRequest) {
     }
 
     // Create Stripe checkout session
-    console.log('Creating Stripe session with product:', product)
-    
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -106,11 +116,6 @@ export async function POST(req: NextRequest) {
       locale: 'ja',
     })
     
-    console.log('Session created successfully:', {
-      id: session.id,
-      url: session.url
-    })
-
     return NextResponse.json({
       sessionId: session.id,
       url: session.url,
@@ -120,7 +125,6 @@ export async function POST(req: NextRequest) {
       }
     })
   } catch (error: any) {
-    console.error('Checkout session error:', error)
     const errorMessage = error?.message || 'Failed to create checkout session'
     return NextResponse.json(
       { 

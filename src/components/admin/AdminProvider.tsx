@@ -34,13 +34,15 @@ export default function AdminProvider({ children }: { children: React.ReactNode 
     
     const checkUser = async () => {
       try {
-        // デモモードのチェック
+        // ハードコード認証のチェック
         if (typeof window !== 'undefined') {
-          const isDemoMode = localStorage.getItem('adminDemoMode') === 'true'
-          if (isDemoMode) {
-            const demoUser = localStorage.getItem('adminUser')
-            if (demoUser && mounted) {
-              setUser(JSON.parse(demoUser))
+          const adminUser = localStorage.getItem('adminUser')
+          const adminDemoMode = localStorage.getItem('adminDemoMode')
+          
+          // adminDemoModeがfalseで、adminUserが存在する場合は認証済みとする
+          if (adminDemoMode === 'false' && adminUser) {
+            if (mounted) {
+              setUser(JSON.parse(adminUser))
               setLoading(false)
               return
             }
