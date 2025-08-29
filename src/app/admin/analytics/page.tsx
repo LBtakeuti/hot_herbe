@@ -210,7 +210,7 @@ export default function CustomerAnalyticsPage() {
           else if (hour < 21) timeSlot = '18-21'
           else timeSlot = '21-24'
           
-          const existing = acc.find(a => a.hour === timeSlot)
+          const existing = acc.find((a: { hour: string; orders: number }) => a.hour === timeSlot)
           if (existing) existing.orders++
           else acc.push({ hour: timeSlot, orders: 1 })
           return acc

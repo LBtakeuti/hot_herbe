@@ -70,7 +70,8 @@
       "Bash(open http://localhost:3000/admin/analytics)",
       "Bash(open http://localhost:3000/admin/profit)",
       "Bash(open http://localhost:3000/admin/inventory)",
-      "Bash(open http://localhost:3003/admin/inventory)"
+      "Bash(open http://localhost:3003/admin/inventory)",
+      "Bash(vercel inspect:*)"
     ],
     "deny": []
   },
