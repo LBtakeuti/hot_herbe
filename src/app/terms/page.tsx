@@ -57,7 +57,7 @@ export default function Terms() {
             <section className="mb-8">
               <h2 className="text-hot-herbe-dark text-xl font-bold mb-4">6. 追加手数料等の追加料金</h2>
               <p className="text-hot-herbe-dark text-base mb-4">
-                配送料（一律<span className="font-inter">500円</span>/箱）
+                配送料（一律<span className="font-inter">550円</span>/箱）
               </p>
             </section>
 

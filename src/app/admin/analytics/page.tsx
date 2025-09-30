@@ -4,82 +4,23 @@ import { useState, useEffect } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import {
   ChartBarIcon,
-  UsersIcon,
+  UserGroupIcon,
   ShoppingCartIcon,
   CurrencyYenIcon,
-  ArrowTrendingUpIcon,
-  CalendarDaysIcon,
-  MapPinIcon,
-  DevicePhoneMobileIcon,
-  StarIcon,
-  ClockIcon,
-  UserGroupIcon
+  MapPinIcon
 } from '@heroicons/react/24/outline'
+import KPICard from '@/components/admin/KPICard'
+import AnalyticsTabNav from '@/components/admin/AnalyticsTabNav'
+import BarChart from '@/components/admin/BarChart'
+import RFMAnalysisCard from '@/components/admin/RFMAnalysisCard'
+import { CustomerAnalytics } from '@/types'
 
-interface CustomerAnalytics {
-  // 顧客概要
-  totalCustomers: number
-  newCustomers: number
-  returningCustomers: number
-  churnRate: number
-  
-  // 購買指標
-  averageOrderValue: number
-  purchaseFrequency: number
-  customerLifetimeValue: number
-  
-  // 顧客セグメント
-  segments: {
-    name: string
-    count: number
-    revenue: number
-    percentage: number
-    avgOrderValue: number
-  }[]
-  
-  // RFM分析
-  rfmAnalysis: {
-    champions: number
-    loyalCustomers: number
-    potentialLoyalists: number
-    newCustomers: number
-    atRisk: number
-    cantLose: number
-  }
-  
-  // 地域分布
-  regionalDistribution: {
-    region: string
-    customers: number
-    revenue: number
-    avgOrderValue: number
-  }[]
-  
-  // 購買パターン
-  purchasePatterns: {
-    timeOfDay: { hour: string; orders: number }[]
-    dayOfWeek: { day: string; orders: number }[]
-    seasonality: { month: string; orders: number; revenue: number }[]
-  }
-  
-  // 商品分析
-  productPerformance: {
-    product: string
-    units: number
-    revenue: number
-    customers: number
-    repurchaseRate: number
-  }[]
-  
-  // コホート分析
-  cohortRetention: {
-    cohort: string
-    month0: number
-    month1: number
-    month2: number
-    month3: number
-  }[]
-}
+const tabs = [
+  { id: 'overview', label: '概要' },
+  { id: 'segments', label: 'セグメント分析' },
+  { id: 'behavior', label: '購買行動' },
+  { id: 'retention', label: 'リテンション' }
+]
 
 export default function CustomerAnalyticsPage() {
   const [analytics, setAnalytics] = useState<CustomerAnalytics | null>(null)
@@ -399,111 +340,49 @@ export default function CustomerAnalyticsPage() {
       </div>
 
       {/* タブナビゲーション */}
-      <div className="border-b border-gray-200 mb-6">
-        <nav className="-mb-px flex space-x-8">
-          {['overview', 'segments', 'behavior', 'retention'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                activeTab === tab
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-            >
-              {tab === 'overview' && '概要'}
-              {tab === 'segments' && 'セグメント分析'}
-              {tab === 'behavior' && '購買行動'}
-              {tab === 'retention' && 'リテンション'}
-            </button>
-          ))}
-        </nav>
-      </div>
+      <AnalyticsTabNav
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
 
       {/* 概要タブ */}
       {activeTab === 'overview' && (
         <>
           {/* KPIカード */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-500 text-sm">総顧客数</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">
-                    {analytics.totalCustomers.toLocaleString()}
-                  </p>
-                  <p className="text-sm text-green-500 mt-2 flex items-center">
-                    <ArrowTrendingUpIcon className="h-4 w-4 mr-1" />
-                    +{analytics.newCustomers} 今月
-                  </p>
-                </div>
-                <UserGroupIcon className="h-10 w-10 text-blue-500" />
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-500 text-sm">平均注文額</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">
-                    ¥{Math.round(analytics.averageOrderValue).toLocaleString()}
-                  </p>
-                  <p className="text-sm text-gray-500 mt-2">前月比 +0%</p>
-                </div>
-                <ShoppingCartIcon className="h-10 w-10 text-green-500" />
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-500 text-sm">顧客生涯価値</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">
-                    ¥{Math.round(analytics.customerLifetimeValue).toLocaleString()}
-                  </p>
-                  <p className="text-sm text-gray-500 mt-2">購買頻度: {analytics.purchaseFrequency.toFixed(1)}回</p>
-                </div>
-                <CurrencyYenIcon className="h-10 w-10 text-purple-500" />
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-500 text-sm">離脱率</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">
-                    {analytics.churnRate.toFixed(1)}%
-                  </p>
-                  <p className="text-sm text-gray-500 mt-2">前月比 -0%</p>
-                </div>
-                <ChartBarIcon className="h-10 w-10 text-red-500" />
-              </div>
-            </div>
+            <KPICard
+              title="総顧客数"
+              value={analytics.totalCustomers.toLocaleString()}
+              subtext={`+${analytics.newCustomers} 今月`}
+              icon={UserGroupIcon}
+              iconColor="text-blue-500"
+            />
+            <KPICard
+              title="平均注文額"
+              value={`¥${Math.round(analytics.averageOrderValue).toLocaleString()}`}
+              subtext="前月比 +0%"
+              icon={ShoppingCartIcon}
+              iconColor="text-green-500"
+            />
+            <KPICard
+              title="顧客生涯価値"
+              value={`¥${Math.round(analytics.customerLifetimeValue).toLocaleString()}`}
+              subtext={`購買頻度: ${analytics.purchaseFrequency.toFixed(1)}回`}
+              icon={CurrencyYenIcon}
+              iconColor="text-purple-500"
+            />
+            <KPICard
+              title="離脱率"
+              value={`${analytics.churnRate.toFixed(1)}%`}
+              subtext="前月比 -0%"
+              icon={ChartBarIcon}
+              iconColor="text-red-500"
+            />
           </div>
 
           {/* RFM分析 */}
-          <div className="bg-white rounded-lg shadow mb-6">
-            <div className="px-6 py-4 border-b">
-              <h2 className="text-lg font-semibold">RFM分析</h2>
-            </div>
-            <div className="p-6">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {Object.entries(analytics.rfmAnalysis).map(([key, value]) => (
-                  <div key={key} className="text-center">
-                    <p className="text-sm text-gray-500">
-                      {key === 'champions' && 'チャンピオン'}
-                      {key === 'loyalCustomers' && 'ロイヤル顧客'}
-                      {key === 'potentialLoyalists' && '潜在的ロイヤル'}
-                      {key === 'newCustomers' && '新規顧客'}
-                      {key === 'atRisk' && 'リスク顧客'}
-                      {key === 'cantLose' && '離脱予備軍'}
-                    </p>
-                    <p className="text-2xl font-bold mt-1">{value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <RFMAnalysisCard rfmAnalysis={analytics.rfmAnalysis} />
 
           {/* 地域分布 */}
           <div className="bg-white rounded-lg shadow">
@@ -600,20 +479,10 @@ export default function CustomerAnalyticsPage() {
               <h2 className="text-lg font-semibold">時間帯別注文数</h2>
             </div>
             <div className="p-6">
-              {analytics.purchasePatterns.timeOfDay.map((time) => (
-                <div key={time.hour} className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium w-20">{time.hour}</span>
-                  <div className="flex-1 mx-4">
-                    <div className="w-full bg-gray-200 rounded-full h-4">
-                      <div 
-                        className="bg-green-500 h-4 rounded-full"
-                        style={{ width: `${(time.orders / Math.max(...analytics.purchasePatterns.timeOfDay.map(t => t.orders), 1)) * 100}%` }}
-                      />
-                    </div>
-                  </div>
-                  <span className="text-sm text-gray-500 w-12 text-right">{time.orders}</span>
-                </div>
-              ))}
+              <BarChart
+                data={analytics.purchasePatterns.timeOfDay.map(t => ({ label: t.hour, value: t.orders }))}
+                color="bg-green-500"
+              />
             </div>
           </div>
 
@@ -622,20 +491,10 @@ export default function CustomerAnalyticsPage() {
               <h2 className="text-lg font-semibold">曜日別注文数</h2>
             </div>
             <div className="p-6">
-              {analytics.purchasePatterns.dayOfWeek.map((day) => (
-                <div key={day.day} className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium w-12">{day.day}</span>
-                  <div className="flex-1 mx-4">
-                    <div className="w-full bg-gray-200 rounded-full h-4">
-                      <div 
-                        className="bg-blue-500 h-4 rounded-full"
-                        style={{ width: `${(day.orders / Math.max(...analytics.purchasePatterns.dayOfWeek.map(d => d.orders), 1)) * 100}%` }}
-                      />
-                    </div>
-                  </div>
-                  <span className="text-sm text-gray-500 w-12 text-right">{day.orders}</span>
-                </div>
-              ))}
+              <BarChart
+                data={analytics.purchasePatterns.dayOfWeek.map(d => ({ label: d.day, value: d.orders }))}
+                color="bg-blue-500"
+              />
             </div>
           </div>
 

@@ -121,18 +121,36 @@ export const ingredients = [
 export const features = [
   {
     title: "韓国発、体の芯から温める温感クリーム",
+    subtitle: "伝統と革新の融合",
     description: "韓国で長年愛されてきた温感クリームが日本初上陸。塗布するとじんわりと温かさが広がり、体の芯まで心地よい温感が届きます。韓国の伝統的な温活文化と最新技術を融合させた、特別な温感体験をお届けします。",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80"
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    benefits: [
+      "韓国の伝統的な温活文化を体験",
+      "体の芯まで届く温感",
+      "最新技術との融合"
+    ]
   },
   {
     title: "13種の天然由来成分による温感サポート",
+    subtitle: "自然由来の力",
     description: "甘草、ターメリック、生姜、唐辛子など、温感作用で知られる13種類の天然由来成分を贅沢に配合。これらの成分が肌に潤いを与えながら、じんわりとした温かさで包み込みます。毎日のセルフケアで、めぐりの良い健やかな状態へ。",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80"
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+    benefits: [
+      "13種類の天然由来成分配合",
+      "肌に潤いを与える",
+      "めぐりをサポート"
+    ]
   },
   {
     title: "スポーツから美容まで幅広いシーンで活躍",
+    subtitle: "様々なシーンで",
     description: "運動前のウォーミングアップ、デスクワーク後のリフレッシュ、就寝前のリラックスタイムなど、様々なシーンでご使用いただけます。べたつかず、さらっとした使用感で、衣服を着てもべたつきません。韓国で多くの方に支持される理由がここにあります。",
-    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80"
+    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80",
+    benefits: [
+      "べたつかない使用感",
+      "様々なシーンで活躍",
+      "衣服を着ても快適"
+    ]
   }
 ];
 

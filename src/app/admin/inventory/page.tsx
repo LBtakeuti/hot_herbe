@@ -5,60 +5,20 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import {
   CubeIcon,
   PlusIcon,
-  MinusIcon,
-  PencilIcon,
-  TrashIcon,
   ExclamationTriangleIcon,
   CheckCircleIcon,
   CurrencyYenIcon,
   CalculatorIcon,
-  DocumentTextIcon,
-  TruckIcon,
   ArrowUpIcon,
   ArrowDownIcon,
-  ClockIcon,
-  ShoppingCartIcon,
-  ChartBarIcon
+  ChartBarIcon,
+  PencilIcon,
+  TrashIcon
 } from '@heroicons/react/24/outline'
-
-interface Product {
-  id: string
-  name: string
-  sku: string
-  category: string
-  unit_cost: number          // 仕入原価
-  manufacturing_cost: number // 製造原価
-  packaging_cost: number     // 梱包費
-  shipping_cost: number      // 配送費（1個あたり）
-  selling_price: number      // 販売価格
-  wholesale_price?: number   // 卸売価格
-  current_stock: number      // 現在在庫
-  reserved_stock: number     // 予約在庫
-  available_stock: number    // 利用可能在庫
-  min_stock: number          // 最小在庫
-  max_stock: number          // 最大在庫
-  reorder_point: number      // 発注点
-  reorder_quantity: number   // 発注数量
-  supplier: string          // 仕入先
-  lead_time: number         // リードタイム（日）
-  notes?: string            // 備考
-  updated_at: string        // 最終更新日
-}
-
-interface StockHistory {
-  id: string
-  product_id: string
-  type: 'in' | 'out' | 'adjustment'
-  quantity: number
-  reason?: string
-  reference_number?: string
-  previous_stock: number
-  new_stock: number
-  unit_cost?: number
-  total_value?: number
-  created_by?: string
-  created_at: string
-}
+import StatCard from '@/components/admin/StatCard'
+import ProductTable from '@/components/admin/ProductTable'
+import StockHistoryTable from '@/components/admin/StockHistoryTable'
+import { Product, StockHistory } from '@/types'
 
 export default function InventoryManagement() {
   const [products, setProducts] = useState<Product[]>([])
@@ -432,50 +392,34 @@ export default function InventoryManagement() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">総在庫数</p>
-              <p className="text-2xl font-bold">
-                {products.reduce((sum, p) => sum + p.current_stock, 0)}
-              </p>
-            </div>
-            <CubeIcon className="h-8 w-8 text-blue-500" />
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">在庫評価額</p>
-              <p className="text-2xl font-bold">
-                ¥{getTotalInventoryValue().toLocaleString()}
-              </p>
-            </div>
-            <CurrencyYenIcon className="h-8 w-8 text-green-500" />
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">潜在売上高</p>
-              <p className="text-2xl font-bold">
-                ¥{getTotalPotentialRevenue().toLocaleString()}
-              </p>
-            </div>
-            <ChartBarIcon className="h-8 w-8 text-purple-500" />
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">発注必要</p>
-              <p className="text-2xl font-bold">
-                {products.filter(p => p.current_stock <= p.reorder_point).length}
-              </p>
-            </div>
-            <ExclamationTriangleIcon className="h-8 w-8 text-orange-500" />
-          </div>
-        </div>
+        <StatCard
+          title="総在庫数"
+          value={products.reduce((sum, p) => sum + p.current_stock, 0)}
+          icon={CubeIcon}
+          iconColor="text-blue-500"
+          iconBgColor="bg-blue-100"
+        />
+        <StatCard
+          title="在庫評価額"
+          value={`¥${getTotalInventoryValue().toLocaleString()}`}
+          icon={CurrencyYenIcon}
+          iconColor="text-green-500"
+          iconBgColor="bg-green-100"
+        />
+        <StatCard
+          title="潜在売上高"
+          value={`¥${getTotalPotentialRevenue().toLocaleString()}`}
+          icon={ChartBarIcon}
+          iconColor="text-purple-500"
+          iconBgColor="bg-purple-100"
+        />
+        <StatCard
+          title="発注必要"
+          value={products.filter(p => p.current_stock <= p.reorder_point).length}
+          icon={ExclamationTriangleIcon}
+          iconColor="text-orange-500"
+          iconBgColor="bg-orange-100"
+        />
       </div>
 
       {/* Product List/Kanban View */}

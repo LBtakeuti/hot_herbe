@@ -17,6 +17,17 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { productId, quantity = 1 } = body
     
+    // Mock mode for local verification without Stripe network calls
+    if (process.env.STRIPE_MOCK === '1') {
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+      return NextResponse.json({
+        sessionId: 'cs_test_mocked',
+        url: `${baseUrl}/purchase/success?session_id=cs_test_mocked`,
+      }, {
+        headers: { 'Access-Control-Allow-Origin': '*' }
+      })
+    }
+    
     // 入力値検証
     if (!productId || typeof productId !== 'string') {
       return NextResponse.json(
@@ -33,23 +44,27 @@ export async function POST(req: NextRequest) {
     }
     
 
-    // Define product prices
-    const products: Record<string, { name: string; price: number; description: string }> = {
+    // Define product config. Prefer Price IDs; alternatively set Product IDs
+    // and the default Price will be resolved at runtime.
+    const products: Record<string, { name: string; description: string; priceId?: string; productId?: string }> = {
       'hot_herbe_30days': {
         name: 'HOT HERBE 温感クリーム 単品1個',
-        price: 6980,
-        description: 'HOT HERBE 温感ボディクリーム 1個（30日分）'
+        description: 'HOT HERBE 温感ボディクリーム 1個（30日分）',
+        priceId: process.env.STRIPE_PRICE_30DAYS,
+        productId: process.env.STRIPE_PRODUCT_30DAYS,
       },
       'hot_herbe_90days': {
         name: 'HOT HERBE 温感クリーム 2個セット',
-        price: 12000,
-        description: 'HOT HERBE 温感ボディクリーム 2個セット（60日分）14%お得'
+        description: 'HOT HERBE 温感ボディクリーム 2個セット（60日分）14%お得',
+        priceId: process.env.STRIPE_PRICE_90DAYS,
+        productId: process.env.STRIPE_PRODUCT_90DAYS,
       },
       'hot_herbe_180days': {
         name: 'HOT HERBE 温感クリーム 3個セット',
-        price: 16000,
-        description: 'HOT HERBE 温感ボディクリーム 3個セット（90日分）24%お得'
-      }
+        description: 'HOT HERBE 温感ボディクリーム 3個セット（90日分）24%お得',
+        priceId: process.env.STRIPE_PRICE_180DAYS,
+        productId: process.env.STRIPE_PRODUCT_180DAYS,
+      },
     }
 
     const product = products[productId]
@@ -60,22 +75,43 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Resolve Price ID: prefer explicit Price ID; otherwise try product.default_price
+    let resolvedPriceId: string | undefined = product.priceId
+    if (!resolvedPriceId && product.productId) {
+      try {
+        const p = await stripe.products.retrieve(product.productId)
+        const defaultPrice = p.default_price
+        if (typeof defaultPrice === 'string') {
+          resolvedPriceId = defaultPrice
+        } else if (defaultPrice && typeof defaultPrice === 'object' && 'id' in defaultPrice) {
+          resolvedPriceId = (defaultPrice as any).id
+        } else {
+          // Fallback: pick the first active price for the product
+          const prices = await stripe.prices.list({ product: product.productId, active: true, limit: 1 })
+          resolvedPriceId = prices.data[0]?.id
+        }
+      } catch (e) {
+        return NextResponse.json(
+          { error: 'Failed to resolve price for product' },
+          { status: 500 }
+        )
+      }
+    }
+
+    if (!resolvedPriceId) {
+      return NextResponse.json(
+        { error: 'Missing Stripe Price ID. Set STRIPE_PRICE_* or STRIPE_PRODUCT_* with default price.' },
+        { status: 400 }
+      )
+    }
+
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
-          price_data: {
-            currency: 'jpy',
-            product_data: {
-              name: product.name,
-              description: product.description,
-              // imagesは一時的にコメントアウト（localhostでは問題を起こす可能性がある）
-              // images: [`${process.env.NEXT_PUBLIC_APP_URL}/product-image.webp`],
-            },
-            unit_amount: product.price,
-          },
-          quantity: quantity,
+          price: resolvedPriceId,
+          quantity,
         },
       ],
       mode: 'payment',
@@ -90,10 +126,10 @@ export async function POST(req: NextRequest) {
           shipping_rate_data: {
             type: 'fixed_amount',
             fixed_amount: {
-              amount: 0,
+              amount: 550,
               currency: 'jpy',
             },
-            display_name: '送料無料',
+            display_name: '配送料（全国一律）',
             delivery_estimate: {
               minimum: {
                 unit: 'business_day',
@@ -112,6 +148,7 @@ export async function POST(req: NextRequest) {
       },
       metadata: {
         productId: productId,
+        productName: product.name,
       },
       locale: 'ja',
     })
