@@ -37,8 +37,9 @@ export default function PricingCard({ title, price, save, index }: PricingCardPr
       const data = await response.json()
       
       if (!response.ok) {
-        console.error('Checkout error:', data)
-        throw new Error(data.error || 'チェックアウトセッションの作成に失敗しました')
+        console.error('Checkout error response:', data)
+        const errorMsg = data.details || data.error || 'チェックアウトセッションの作成に失敗しました'
+        throw new Error(errorMsg)
       }
       
       if (data.error) {
@@ -77,9 +78,10 @@ export default function PricingCard({ title, price, save, index }: PricingCardPr
           throw error
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Checkout error:', error)
-      alert('エラーが発生しました。もう一度お試しください。')
+      const errorMessage = error?.message || 'エラーが発生しました。もう一度お試しください。'
+      alert(errorMessage)
       setIsLoading(false)
     }
   }

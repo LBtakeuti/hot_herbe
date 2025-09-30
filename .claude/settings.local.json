@@ -76,7 +76,10 @@
       "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_82auXI/**)",
       "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_HeJVfc/**)",
       "Bash(tree:*)",
-      "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_5DgcEu/**)"
+      "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_5DgcEu/**)",
+      "Bash(vercel:*)",
+      "Bash(test:*)",
+      "Read(//var/folders/h2/bp8c5ty547qbq7vb6ng8jgy40000gq/T/TemporaryItems/NSIRD_screencaptureui_GJFdWg/**)"
     ],
     "deny": []
   },

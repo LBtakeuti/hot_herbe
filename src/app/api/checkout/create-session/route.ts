@@ -90,9 +90,14 @@ export async function POST(req: NextRequest) {
           const prices = await stripe.prices.list({ product: product.productId, active: true, limit: 1 })
           resolvedPriceId = prices.data[0]?.id
         }
-      } catch (e) {
+      } catch (e: any) {
+        console.error('Error resolving price:', e)
         return NextResponse.json(
-          { error: 'Failed to resolve price for product' },
+          {
+            error: 'Failed to resolve price for product',
+            details: process.env.NODE_ENV === 'development' ? e?.message : undefined,
+            productId: product.productId
+          },
           { status: 500 }
         )
       }
@@ -162,11 +167,14 @@ export async function POST(req: NextRequest) {
       }
     })
   } catch (error: any) {
+    console.error('Checkout session creation error:', error)
     const errorMessage = error?.message || 'Failed to create checkout session'
     return NextResponse.json(
-      { 
+      {
         error: errorMessage,
-        details: process.env.NODE_ENV === 'development' ? error?.raw?.message : undefined
+        details: error?.raw?.message || error?.message,
+        type: error?.type,
+        code: error?.code
       },
       { status: 500 }
     )
