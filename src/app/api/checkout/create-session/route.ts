@@ -79,24 +79,43 @@ export async function POST(req: NextRequest) {
     let resolvedPriceId: string | undefined = product.priceId
     if (!resolvedPriceId && product.productId) {
       try {
-        const p = await stripe.products.retrieve(product.productId)
+        console.log('Retrieving product:', product.productId)
+        const p = await stripe.products.retrieve(product.productId, {
+          expand: ['default_price']
+        })
+        console.log('Product retrieved:', { id: p.id, name: p.name, default_price: p.default_price })
+
         const defaultPrice = p.default_price
         if (typeof defaultPrice === 'string') {
           resolvedPriceId = defaultPrice
         } else if (defaultPrice && typeof defaultPrice === 'object' && 'id' in defaultPrice) {
           resolvedPriceId = (defaultPrice as any).id
         } else {
+          console.log('No default price found, listing prices for product')
           // Fallback: pick the first active price for the product
           const prices = await stripe.prices.list({ product: product.productId, active: true, limit: 1 })
+          console.log('Prices found:', prices.data.length)
           resolvedPriceId = prices.data[0]?.id
         }
+
+        console.log('Resolved price ID:', resolvedPriceId)
       } catch (e: any) {
-        console.error('Error resolving price:', e)
+        console.error('Error resolving price:', {
+          message: e?.message,
+          type: e?.type,
+          code: e?.code,
+          statusCode: e?.statusCode,
+          raw: e?.raw
+        })
         return NextResponse.json(
           {
             error: 'Failed to resolve price for product',
-            details: process.env.NODE_ENV === 'development' ? e?.message : undefined,
-            productId: product.productId
+            details: e?.message || 'Unknown error',
+            productId: product.productId,
+            stripeError: {
+              type: e?.type,
+              code: e?.code
+            }
           },
           { status: 500 }
         )
