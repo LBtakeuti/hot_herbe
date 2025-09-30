@@ -38,7 +38,9 @@ export default function PricingCard({ title, price, save, index }: PricingCardPr
       
       if (!response.ok) {
         console.error('Checkout error response:', data)
-        const errorMsg = data.details || data.error || 'チェックアウトセッションの作成に失敗しました'
+        const errorMsg = data.hint
+          ? `${data.error}\n\n${data.hint}`
+          : data.details || data.error || 'チェックアウトセッションの作成に失敗しました'
         throw new Error(errorMsg)
       }
       

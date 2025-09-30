@@ -107,6 +107,10 @@ export async function POST(req: NextRequest) {
           statusCode: e?.statusCode,
           raw: e?.raw
         })
+
+        // Specific error message for test/live mode mismatch
+        const isModeMismatch = e?.message?.includes('a similar object exists in live mode')
+
         return NextResponse.json(
           {
             error: 'Failed to resolve price for product',
@@ -115,7 +119,10 @@ export async function POST(req: NextRequest) {
             stripeError: {
               type: e?.type,
               code: e?.code
-            }
+            },
+            hint: isModeMismatch
+              ? 'Product ID exists in Stripe live mode, but test mode API keys are being used. Switch to live mode keys in Vercel environment variables.'
+              : 'Check that the Product ID is correct and has a default price set in Stripe Dashboard.'
           },
           { status: 500 }
         )
